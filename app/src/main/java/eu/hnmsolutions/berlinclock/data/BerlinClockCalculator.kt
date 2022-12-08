@@ -1,6 +1,9 @@
 package eu.hnmsolutions.berlinclock.data
 
-class BerlinClockCalculator {
+import eu.hnmsolutions.berlinclock.domain.IBerlinClockCalculator
+import javax.inject.Inject
+
+class BerlinClockCalculator @Inject constructor(): IBerlinClockCalculator {
 
     fun getHours(hours: Int): String {
         val numberTopHourLamps = hours / 5
@@ -28,7 +31,7 @@ class BerlinClockCalculator {
         return if (seconds % 2 == 0) "Y" else "O"
     }
 
-    fun berlinClock(hours: Int, minutes: Int, seconds: Int): String {
+    override fun berlinClock(hours: Int, minutes: Int, seconds: Int): String {
         return getSeconds(seconds) + " " + getHours(hours) + " " + getMinutes(minutes)
     }
 
